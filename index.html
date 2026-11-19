@@ -12,8 +12,9 @@
     <header class="topbar">
       <div class="brand">
         <span class="brand-mark">&lt;/&gt;</span>
-        <span>Code Studio</span>
+        <span>Code<span class="brand-accent">Studio</span></span>
       </div>
+      <div class="project-name">HTML Playground</div>
       <nav class="language-switch" aria-label="Language">
         <button class="language active" data-language="html">HTML</button>
         <button class="language" data-language="c">C</button>
@@ -25,6 +26,11 @@
     </header>
 
     <section class="workspace">
+      <aside class="activity-bar" aria-label="Editor tools">
+        <button class="activity active" title="Files" aria-label="Files">▱</button>
+        <button class="activity" title="Search" aria-label="Search">⌕</button>
+        <button class="activity" title="Settings" aria-label="Settings">⚙</button>
+      </aside>
       <div class="editor-panel">
         <div class="tabbar">
           <div class="tab"><span class="tab-icon" id="tabIcon">#</span><span id="fileName">index.html</span></div>
