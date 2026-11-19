@@ -148,7 +148,7 @@ async function runCode() {
     const contentType = response.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
       throw new Error(
-        "C compilation requires the Node server. GitHub Pages can host HTML, but cannot run gcc. Deploy this repository to Render or Fly.io."
+        "C compilation is not available on this static host. Deploy the Node server with Render or open it on a local machine."
       );
     }
     const result = await response.json();

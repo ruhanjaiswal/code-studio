@@ -3,4 +3,4 @@ services:
     name: code-studio
     runtime: docker
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /
+    healthCheckPath: /api/health

@@ -21,3 +21,5 @@ Open `http://localhost:3000`. The C runner uses `gcc`, so GCC must be installed.
 ## Deploy
 
 The interface can be hosted by GitHub Pages, but native C compilation requires the Node server. Deploy the Node server to a platform such as Render or Fly.io.
+
+The Render deployment installs GCC in a Docker container and runs C programs with a 5-second execution limit and 100 KB source limit.

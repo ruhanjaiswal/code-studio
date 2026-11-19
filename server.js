@@ -7,6 +7,7 @@ const { spawn } = require("node:child_process");
 
 const root = __dirname;
 const port = Number(process.env.PORT) || 3000;
+const compilerRoot = "/tmp/code-studio";
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -31,7 +32,8 @@ async function compileAndRun(code, input) {
   if (!code.trim()) return { output: "", error: "Enter C source code first." };
   if (code.length > 100000) return { output: "", error: "Source code is limited to 100 KB." };
 
-  const temp = await fsp.mkdtemp(path.join(os.tmpdir(), "code-studio-"));
+  await fsp.mkdir(compilerRoot, { recursive: true, mode: 0o700 });
+  const temp = await fsp.mkdtemp(path.join(compilerRoot, "run-"));
   const source = path.join(temp, "main.c");
   const binary = path.join(temp, "main");
   try {
@@ -92,6 +94,12 @@ async function serveStatic(req, res) {
 }
 
 const server = http.createServer(async (req, res) => {
+  if (req.method === "GET" && req.url === "/api/health") {
+    res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
+    res.end(JSON.stringify({ status: "ok", compiler: "gcc", ready: true }));
+    return;
+  }
+
   if (req.method === "POST" && req.url === "/api/run") {
     let body = "";
     req.on("data", (chunk) => {
