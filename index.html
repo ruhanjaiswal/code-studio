@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Code Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>Code Studio</span>
+      </div>
+      <nav class="language-switch" aria-label="Language">
+        <button class="language active" data-language="html">HTML</button>
+        <button class="language" data-language="c">C</button>
+      </nav>
+      <button id="runButton" class="run-button" type="button">
+        <span class="play">▶</span>
+        <span id="runLabel">Run</span>
+      </button>
+    </header>
+
+    <section class="workspace">
+      <div class="editor-panel">
+        <div class="tabbar">
+          <div class="tab"><span class="tab-icon" id="tabIcon">#</span><span id="fileName">index.html</span></div>
+          <button id="resetButton" class="icon-button" type="button" title="Reset code">↻</button>
+        </div>
+        <textarea id="codeEditor" aria-label="Code editor" spellcheck="false"></textarea>
+        <div class="statusbar">
+          <span id="statusText">Ready</span>
+          <span id="documentStats">Ln 1, Col 1</span>
+        </div>
+      </div>
+
+      <div class="preview-panel">
+        <div class="preview-header">
+          <span id="previewTitle">Live Preview</span>
+          <div class="preview-actions">
+            <button id="openPreview" class="icon-button" type="button" title="Open preview">↗</button>
+            <button id="refreshPreview" class="icon-button" type="button" title="Refresh preview">↻</button>
+          </div>
+        </div>
+        <iframe id="preview" title="Live HTML preview" sandbox="allow-scripts allow-modals"></iframe>
+        <div id="terminal" class="terminal" hidden>
+          <div class="terminal-header">
+            <span>TERMINAL</span>
+            <span id="exitCode"></span>
+          </div>
+          <pre id="terminalOutput"></pre>
+          <label class="stdin">
+            <span>Input</span>
+            <textarea id="stdinInput" rows="3" placeholder="Program input, one value per line"></textarea>
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
