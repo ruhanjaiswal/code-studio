@@ -61,9 +61,14 @@ const drafts = {
 
 function refreshPreview() {
   if (language !== "html") return;
-  preview.srcdoc = editor.value;
+  const html = editor.value.trim()
+    ? editor.value
+    : "<!doctype html><html><body style='font-family:system-ui;padding:24px'>Start typing HTML...</body></html>";
+  preview.removeAttribute("src");
   preview.hidden = false;
+  preview.style.display = "block";
   terminal.hidden = true;
+  preview.srcdoc = html;
 }
 
 function saveDraft() {
