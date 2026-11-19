@@ -145,6 +145,12 @@ async function runCode() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code: editor.value, input: stdinInput.value })
     });
+    const contentType = response.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      throw new Error(
+        "C compilation requires the Node server. GitHub Pages can host HTML, but cannot run gcc. Deploy this repository to Render or Fly.io."
+      );
+    }
     const result = await response.json();
     terminalOutput.textContent = result.output || result.error || "(No output)";
     exitCode.textContent = result.exitCode === undefined ? "failed" : `exit ${result.exitCode}`;
